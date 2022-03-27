@@ -164,7 +164,7 @@ class YOLOV5TorchObjectDetector(nn.Module):
         return letterbox(img, new_shape=new_shape, color=color, auto=auto, scaleFill=scaleFill, scaleup=scaleup)
 
     def forward(self, img):
-        prediction, logits, _ = self.model(img, augment=False)
+        prediction, logits = self.model(img, augment=False)
         prediction, logits = self.non_max_suppression(prediction, logits, self.confidence, self.iou_thresh,
                                                       classes=None,
                                                       agnostic=self.agnostic)
